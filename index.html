@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ворошилова Валерия — танцевальный тренер</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div id="top"></div>
+  <header class="header">
+    <nav class="nav container">
+      <a href="#top" class="nav__logo" id="nav-logo"></a>
+      <button class="nav__toggle" aria-label="Открыть меню">
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav__list">
+        <li><a href="#services" id="nav-services"></a></li>
+        <li><a href="#about" id="nav-about"></a></li>
+        <li><a href="#contacts" id="nav-contacts"></a></li>
+        <li>
+          <a href="#" id="nav-tg" class="nav__social-link" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <img src="assets/img/TG Logo.svg" alt="Telegram" class="nav__social-icon">
+          </a>
+        </li>
+        <li>
+          <a href="#" id="nav-vk" class="nav__social-link" target="_blank" rel="noopener noreferrer" aria-label="VK">
+            <img src="assets/img/VK Logo.svg" alt="VK" class="nav__social-icon">
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="hero container">
+      <div class="hero__content">
+        <p class="hero__overline" id="hero-overline"></p>
+        <h1 class="hero__title" id="hero-title"></h1>
+        <p class="hero__subtitle" id="hero-subtitle"></p>
+        <div class="hero__actions">
+          <a href="#contacts" class="btn btn--primary" id="hero-primary-cta"></a>
+          <a href="#services" class="btn btn--ghost" id="hero-secondary-cta"></a>
+        </div>
+      </div>
+      <div class="hero__photo">
+        <div class="hero__photo-frame">
+          <img src="avatar.jpg" alt="Ворошилова Валерия" class="hero__photo-img">
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section id="services" class="section section--light">
+      <div class="container">
+        <h2 class="section__title" id="services-title"></h2>
+        <p class="section__subtitle" id="services-subtitle"></p>
+
+        <div class="services-grid">
+          <article class="card service-card service-card--individual">
+            <div class="service-card__header">
+              <img src="assets/img/solo.png" alt="" class="service-card__icon">
+              <h3 class="service-card__title" id="service-individual-title"></h3>
+            </div>
+            <p class="service-card__text" id="service-individual-text"></p>
+            <p class="service-card__price" id="service-individual-price"></p>
+            <button class="service-card__cta" type="button" data-service="individual" id="service-individual-cta"></button>
+          </article>
+
+          <article class="card service-card service-card--groups">
+            <div class="service-card__header">
+              <img src="assets/img/group.png" alt="" class="service-card__icon">
+              <h3 class="service-card__title" id="service-groups-title"></h3>
+            </div>
+            <p class="service-card__text" id="service-groups-text"></p>
+            <ul class="service-card__list" id="service-groups-list"></ul>
+            <button class="service-card__cta" type="button" data-service="groups" id="service-groups-cta"></button>
+          </article>
+
+          <article class="card service-card service-card--wedding">
+            <div class="service-card__header">
+              <img src="assets/img/couple.png" alt="" class="service-card__icon">
+              <h3 class="service-card__title" id="service-wedding-title"></h3>
+            </div>
+            <p class="service-card__text" id="service-wedding-text"></p>
+            <p class="service-card__note" id="service-wedding-note"></p>
+            <p class="service-card__price" id="service-wedding-price"></p>
+            <button class="service-card__cta" type="button" data-service="wedding" id="service-wedding-cta"></button>
+          </article>
+
+          <article class="card service-card service-card--graduation">
+            <div class="service-card__header">
+              <img src="assets/img/party.png" alt="" class="service-card__icon">
+              <h3 class="service-card__title" id="service-graduation-title"></h3>
+            </div>
+            <p class="service-card__text" id="service-graduation-text"></p>
+            <p class="service-card__note" id="service-graduation-note"></p>
+            <p class="service-card__price" id="service-graduation-price"></p>
+            <button class="service-card__cta" type="button" data-service="graduation" id="service-graduation-cta"></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section section--dark">
+      <div class="container about">
+        <div class="about__text">
+          <h2 class="section__title section__title--light" id="about-title"></h2>
+          <p id="about-p1"></p>
+          <p id="about-p2"></p>
+          <p id="about-p3"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="section section--light">
+      <div class="container contacts">
+        <div class="contacts__info">
+          <h2 class="section__title" id="contacts-title"></h2>
+          <p class="section__subtitle" id="contacts-intro"></p>
+
+          <div class="contacts__grid">
+            <div class="contacts__block">
+              <h3 id="contacts-messengers-title"></h3>
+              <ul>
+                <li id="contacts-whatsapp"></li>
+                <li id="contacts-telegram"></li>
+              </ul>
+            </div>
+            <div class="contacts__block">
+              <h3 id="contacts-social-title"></h3>
+              <ul>
+                <li id="contacts-instagram"></li>
+                <li id="contacts-vk"></li>
+              </ul>
+              <p class="contacts__note" id="contacts-instagram-note"></p>
+            </div>
+          </div>
+
+          <div class="contacts__cta">
+            <p id="contacts-cta-title"></p>
+            <ul id="contacts-cta-list"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span id="footer-left" class="footer__brand"></span>
+      <span id="footer-center" class="footer__info"></span>
+      <span id="footer-right"></span>
+    </div>
+  </footer>
+
+  <button class="scroll-top" type="button" aria-label="Вернуться наверх" id="scroll-top-button"></button>
+
+  <script src="assets/js/content.js"></script>
+  <script src="assets/js/links.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
