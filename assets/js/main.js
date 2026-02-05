@@ -115,6 +115,11 @@ document.addEventListener("DOMContentLoaded", function () {
     setTextById("service-graduation-price", c.services.graduation.price);
     setTextById("service-graduation-note", c.services.graduation.note);
 
+    setTextById("service-request-title", c.services.request.title);
+    setTextById("service-request-text", c.services.request.text);
+    setTextById("service-request-price", c.services.request.price);
+    setTextById("service-request-note", c.services.request.note);
+
     // About
     setTextById("about-title", c.about.title);
     setTextById("about-p1", c.about.paragraphs[0]);
@@ -155,6 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setTextById("service-groups-cta", c.ui.serviceCtaLabel);
       setTextById("service-wedding-cta", c.ui.serviceCtaLabel);
       setTextById("service-graduation-cta", c.ui.serviceCtaLabel);
+      setTextById("service-request-cta", c.ui.serviceCtaLabel);
     }
   }
 
@@ -204,5 +210,160 @@ document.addEventListener("DOMContentLoaded", function () {
       window.open(url, "_blank");
     });
   });
+
+  const servicesCarousel = document.getElementById("services-carousel");
+  const servicesPrev = document.getElementById("services-prev");
+  const servicesNext = document.getElementById("services-next");
+  const carouselCardsSelector = ".card.service-card";
+
+  function getGapPx(container) {
+    const style = window.getComputedStyle(container);
+    const gap = parseFloat(style.columnGap || style.gap || "0");
+    return Number.isFinite(gap) ? gap : 0;
+  }
+
+  function initInfiniteCarousel() {
+    if (!servicesCarousel) {
+      return;
+    }
+
+    const cards = Array.from(
+      servicesCarousel.querySelectorAll(carouselCardsSelector)
+    ).filter(function (el) {
+      return el instanceof HTMLElement;
+    });
+
+    if (cards.length === 0) {
+      return;
+    }
+
+    // Prevent double-init
+    if (servicesCarousel.dataset.carousel === "true") {
+      return;
+    }
+    servicesCarousel.dataset.carousel = "true";
+
+    let currentIndex = 0;
+    let isScrolling = false;
+
+    function scrollToCard(index, behavior) {
+      if (index < 0 || index >= cards.length) {
+        return;
+      }
+      const card = cards[index];
+      if (!(card instanceof HTMLElement)) {
+        return;
+      }
+
+      const containerWidth = servicesCarousel.clientWidth;
+      const cardWidth = card.offsetWidth;
+      const cardLeft = card.offsetLeft;
+      
+      // Вычисляем позицию для центрирования карточки
+      let targetLeft = cardLeft - (containerWidth - cardWidth) / 2;
+      
+      // Ограничиваем значение в разумных пределах
+      const maxScroll = servicesCarousel.scrollWidth - containerWidth;
+      targetLeft = Math.max(0, Math.min(targetLeft, maxScroll));
+
+      servicesCarousel.scrollTo({
+        left: targetLeft,
+        behavior: behavior || "smooth",
+      });
+
+      // Обновляем активное состояние
+      cards.forEach(function (c, idx) {
+        if (c instanceof HTMLElement) {
+          c.classList.toggle("is-active", idx === index);
+        }
+      });
+    }
+
+    // Стартуем с первой карточки
+    scrollToCard(currentIndex, "auto");
+
+    // Клик по карточке: пролистываем карусель к этой карточке
+    cards.forEach(function (card, index) {
+      card.addEventListener("click", function (event) {
+        const target = event.target;
+        // Не перехватываем клик по CTA-кнопке внутри карточки
+        if (
+          target instanceof HTMLElement &&
+          target.closest(".service-card__cta")
+        ) {
+          return;
+        }
+
+        if (index === currentIndex || isScrolling) {
+          return;
+        }
+
+        currentIndex = index;
+        scrollToCard(currentIndex, "smooth");
+      });
+    });
+
+    // Стрелки: логическое зацикливание по индексам, как у Bootstrap (wrap = true)
+    function scrollByOne(direction) {
+      if (isScrolling) {
+        return;
+      }
+      
+      const total = cards.length;
+      if (total < 2) {
+        return;
+      }
+
+      isScrolling = true;
+      currentIndex = (currentIndex + direction + total) % total;
+      scrollToCard(currentIndex, "smooth");
+      
+      // Снимаем блокировку после анимации (обычно 300-500мс)
+      setTimeout(function() {
+        isScrolling = false;
+      }, 300);
+    }
+
+    if (servicesPrev) {
+      servicesPrev.addEventListener("click", function () {
+        scrollByOne(-1);
+      });
+    }
+
+    if (servicesNext) {
+      servicesNext.addEventListener("click", function () {
+        scrollByOne(1);
+      });
+    }
+
+    // При изменении ширины пересчитываем позицию без анимации
+    window.addEventListener("resize", function () {
+      scrollToCard(currentIndex, "auto");
+    });
+  }
+
+  function getCarouselStep() {
+    if (!servicesCarousel) {
+      return 0;
+    }
+
+    const firstCard = servicesCarousel.querySelector(carouselCardsSelector);
+    if (firstCard instanceof HTMLElement) {
+      return firstCard.offsetWidth + getGapPx(servicesCarousel);
+    }
+
+    return Math.floor(window.innerWidth * 0.8);
+  }
+
+  function scrollCarouselBy(direction) {
+    if (!servicesCarousel) {
+      return;
+    }
+
+    const step = getCarouselStep();
+    servicesCarousel.scrollBy({ left: direction * step, behavior: "smooth" });
+  }
+
+  initInfiniteCarousel();
 });
 

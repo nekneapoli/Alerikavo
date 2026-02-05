@@ -22,12 +22,12 @@
         <li><a href="#contacts" id="nav-contacts"></a></li>
         <li>
           <a href="#" id="nav-tg" class="nav__social-link" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
-            <img src="assets/img/TG Logo.svg" alt="Telegram" class="nav__social-icon">
+            <img src="assets/img/logo_tg.svg" alt="Telegram" class="nav__social-icon">
           </a>
         </li>
         <li>
           <a href="#" id="nav-vk" class="nav__social-link" target="_blank" rel="noopener noreferrer" aria-label="VK">
-            <img src="assets/img/VK Logo.svg" alt="VK" class="nav__social-icon">
+            <img src="assets/img/logo_vk.svg" alt="VK" class="nav__social-icon">
           </a>
         </li>
       </ul>
@@ -57,7 +57,15 @@
         <h2 class="section__title" id="services-title"></h2>
         <p class="section__subtitle" id="services-subtitle"></p>
 
-        <div class="services-grid">
+        <div class="services-carousel" aria-label="Карусель услуг">
+          <button class="services-carousel__btn services-carousel__btn--prev" type="button" aria-label="Прокрутить услуги влево" id="services-prev">
+            ‹
+          </button>
+          <button class="services-carousel__btn services-carousel__btn--next" type="button" aria-label="Прокрутить услуги вправо" id="services-next">
+            ›
+          </button>
+
+          <div class="services-grid" id="services-carousel">
           <article class="card service-card service-card--individual">
             <div class="service-card__header">
               <img src="assets/img/solo.png" alt="" class="service-card__icon">
@@ -99,6 +107,18 @@
             <p class="service-card__price" id="service-graduation-price"></p>
             <button class="service-card__cta" type="button" data-service="graduation" id="service-graduation-cta"></button>
           </article>
+
+          <article class="card service-card service-card--request">
+            <div class="service-card__header">
+              <img src="assets/img/request.png" alt="" class="service-card__icon">
+              <h3 class="service-card__title" id="service-request-title"></h3>
+            </div>
+            <p class="service-card__text" id="service-request-text"></p>
+            <p class="service-card__note" id="service-request-note"></p>
+            <p class="service-card__price" id="service-request-price"></p>
+            <button class="service-card__cta" type="button" data-service="request" id="service-request-cta"></button>
+          </article>
+          </div>
         </div>
       </div>
     </section>
