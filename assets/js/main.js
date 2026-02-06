@@ -340,6 +340,55 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
+    // Определяем активную карточку при скролле
+    function updateActiveCardOnScroll() {
+      if (isScrolling) {
+        return;
+      }
+
+      const containerWidth = servicesCarousel.clientWidth;
+      const scrollLeft = servicesCarousel.scrollLeft;
+      const containerCenter = scrollLeft + containerWidth / 2;
+
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      cards.forEach(function (card, index) {
+        if (!(card instanceof HTMLElement)) {
+          return;
+        }
+
+        const cardLeft = card.offsetLeft;
+        const cardWidth = card.offsetWidth;
+        const cardCenter = cardLeft + cardWidth / 2;
+        const distance = Math.abs(cardCenter - containerCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      if (closestIndex !== currentIndex) {
+        currentIndex = closestIndex;
+        // Обновляем активное состояние без анимации скролла
+        cards.forEach(function (c, idx) {
+          if (c instanceof HTMLElement) {
+            c.classList.toggle("is-active", idx === currentIndex);
+          }
+        });
+      }
+    }
+
+    // Обработчик скролла с debounce для производительности
+    let scrollTimeout;
+    servicesCarousel.addEventListener("scroll", function () {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function () {
+        updateActiveCardOnScroll();
+      }, 50);
+    });
+
     // При изменении ширины пересчитываем позицию без анимации
     window.addEventListener("resize", function () {
       scrollToCard(currentIndex, "auto");

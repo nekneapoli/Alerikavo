@@ -92,7 +92,8 @@
 
 @media (max-width: 420px) {
   .services-grid {
-    --card-width: calc(100vw - 72px);
+    --card-width: calc(75vw - 14px);
+    padding-right: 20px;
   }
 }
 
