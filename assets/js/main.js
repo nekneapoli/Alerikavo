@@ -130,24 +130,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setTextById("contacts-title", c.contacts.title);
     setTextById("contacts-intro", c.contacts.intro);
     setTextById("contacts-messengers-title", c.contacts.messengersTitle);
-    setTextById("contacts-social-title", c.contacts.socialTitle);
-    setTextById("contacts-whatsapp", c.contacts.whatsapp);
-    setTextById("contacts-telegram", c.contacts.telegram);
-    setTextById("contacts-instagram", c.contacts.instagram);
-    setTextById("contacts-vk", c.contacts.vk);
-    setTextById("contacts-instagram-note", c.contacts.instagramNote);
-
-    const ctaList = document.getElementById("contacts-cta-list");
-    setTextById("contacts-cta-title", c.contacts.ctaTitle);
-
-    if (ctaList && Array.isArray(c.contacts.ctaItems)) {
-      ctaList.innerHTML = "";
-      c.contacts.ctaItems.forEach(function (text) {
-        const li = document.createElement("li");
-        li.textContent = text;
-        ctaList.appendChild(li);
-      });
-    }
 
     // Footer
     setTextById("footer-left", c.footer.left);
@@ -169,6 +151,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const navTg = document.getElementById("nav-tg");
     const navVk = document.getElementById("nav-vk");
+    const contactsTg = document.getElementById("contacts-telegram");
+    const contactsVk = document.getElementById("contacts-vk");
 
     if (navTg && headerLinks.telegram) {
       navTg.setAttribute("href", headerLinks.telegram);
@@ -176,6 +160,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (navVk && headerLinks.vk) {
       navVk.setAttribute("href", headerLinks.vk);
+    }
+
+    if (contactsTg && headerLinks.telegram) {
+      contactsTg.innerHTML = "";
+      const link = document.createElement("a");
+      link.href = headerLinks.telegram;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Написать в Telegram";
+      contactsTg.appendChild(link);
+    }
+
+    if (contactsVk && headerLinks.vk) {
+      contactsVk.innerHTML = "";
+      const link = document.createElement("a");
+      link.href = headerLinks.vk;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Написать во ВКонтакте";
+      contactsVk.appendChild(link);
     }
   }
 
