@@ -76,13 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setTextById("nav-contacts", c.ui.navContacts);
     setTextById("scroll-top-button", c.ui.scrollTop);
 
-    // Hero
-    setTextById("hero-overline", c.hero.overline);
-    setTextById("hero-title", c.hero.title);
-    setTextById("hero-subtitle", c.hero.subtitle);
-    setTextById("hero-primary-cta", c.hero.primaryCta);
-    setTextById("hero-secondary-cta", c.hero.secondaryCta);
-    setTextById("hero-photo-placeholder", c.hero.photoPlaceholder);
+    // Hero — контент задан статично в HTML
 
     // Services
     setTextById("services-title", c.services.title);
@@ -120,11 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setTextById("service-request-price", c.services.request.price);
     setTextById("service-request-note", c.services.request.note);
 
-    // About
-    setTextById("about-title", c.about.title);
-    setTextById("about-p1", c.about.paragraphs[0]);
-    setTextById("about-p2", c.about.paragraphs[1]);
-    setTextById("about-p3", c.about.paragraphs[2]);
+    // About — контент задан статично в HTML
 
     // Contacts
     setTextById("contacts-title", c.contacts.title);
@@ -160,6 +150,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (navVk && headerLinks.vk) {
       navVk.setAttribute("href", headerLinks.vk);
+    }
+
+    const aboutCtaTg = document.getElementById("about-cta-tg");
+    if (aboutCtaTg && headerLinks.telegram) {
+      aboutCtaTg.setAttribute("href", headerLinks.telegram);
     }
 
     if (contactsTg && headerLinks.telegram) {

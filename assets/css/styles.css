@@ -283,8 +283,41 @@ h3 {
   grid-template-columns: minmax(0, 1.4fr);
 }
 
-.about__text p + p {
+.about__text p {
+  max-width: 32rem;
+  margin-bottom: 24px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.about__text p + p,
+.about__text h3 + p {
   margin-top: 0.5rem;
+}
+
+.about__text h2 {
+  color: var(--text-main);
+  line-height: 1.1;
+}
+
+.about__text h3 {
+  color: var(--text-main);
+  font-size: 1.15rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.about__text ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0.5rem 0 1rem;
+  max-width: 32rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.about__text ul li {
+  margin-bottom: 0.35rem;
 }
 
 .contacts {
@@ -314,6 +347,18 @@ h3 {
 .contacts__block li {
   font-size: 0.9rem;
   color: var(--text-main);
+}
+
+.contacts__block li a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.contacts__block li a:hover {
+  color: var(--text-main);
+  opacity: 0.9;
 }
 
 .contacts__block li span {
